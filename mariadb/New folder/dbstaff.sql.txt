@@ -1,0 +1,236 @@
+-- MariaDB dump 10.19  Distrib 10.4.18-MariaDB, for Win64 (AMD64)
+--
+-- Host: localhost    Database: ci
+-- ------------------------------------------------------
+-- Server version	10.4.18-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `anggota`
+--
+
+DROP TABLE IF EXISTS `anggota`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `anggota` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(45) NOT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `hp` varchar(15) DEFAULT NULL,
+  `foto` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `anggota`
+--
+
+LOCK TABLES `anggota` WRITE;
+/*!40000 ALTER TABLE `anggota` DISABLE KEYS */;
+INSERT INTO `anggota` VALUES (1,'Budi','budi@gmail.com','0857321213',NULL),(2,'Siti','siti@gmail.com','081565456456',NULL);
+/*!40000 ALTER TABLE `anggota` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `buku`
+--
+
+DROP TABLE IF EXISTS `buku`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `buku` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `isbn` varchar(100) NOT NULL,
+  `judul` text NOT NULL,
+  `tahun_cetak` varchar(45) NOT NULL,
+  `stok` int(11) NOT NULL,
+  `idpengarang` int(11) NOT NULL,
+  `idpenerbit` int(11) NOT NULL,
+  `idkategori` int(11) NOT NULL,
+  `cover` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `isbn_UNIQUE` (`isbn`),
+  KEY `fk_buku_pengarang` (`idpengarang`),
+  KEY `fk_buku_penerbit1` (`idpenerbit`),
+  KEY `fk_buku_kategori1` (`idkategori`),
+  CONSTRAINT `fk_buku_kategori1` FOREIGN KEY (`idkategori`) REFERENCES `kategori` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_buku_penerbit1` FOREIGN KEY (`idpenerbit`) REFERENCES `penerbit` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_buku_pengarang` FOREIGN KEY (`idpengarang`) REFERENCES `pengarang` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `buku`
+--
+
+LOCK TABLES `buku` WRITE;
+/*!40000 ALTER TABLE `buku` DISABLE KEYS */;
+INSERT INTO `buku` VALUES (1,'111','Sejarah Kemerdekaan RI','2018',10,2,2,1,NULL),(2,'112','Pemberontakan G/30/SPKI','2010',25,1,2,1,'112.png'),(3,'113','Pilpres RI','2019',18,1,1,2,'113.png'),(4,'118','Pilgub DKI Jakarta','2020',15,2,2,2,'118.png'),(5,'114','Detik-Detik Proklamasi Kemerdekaan RI','2020',28,1,1,1,'114.png');
+/*!40000 ALTER TABLE `buku` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `kategori`
+--
+
+DROP TABLE IF EXISTS `kategori`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `kategori` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nama_UNIQUE` (`nama`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `kategori`
+--
+
+LOCK TABLES `kategori` WRITE;
+/*!40000 ALTER TABLE `kategori` DISABLE KEYS */;
+INSERT INTO `kategori` VALUES (3,'IT'),(1,'Sejarah'),(2,'Sosial dan Politik');
+/*!40000 ALTER TABLE `kategori` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `peminjaman`
+--
+
+DROP TABLE IF EXISTS `peminjaman`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `peminjaman` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idbuku` int(11) NOT NULL,
+  `idanggota` int(11) NOT NULL,
+  `jml` varchar(45) NOT NULL,
+  `tgl_pinjam` date NOT NULL,
+  `tgl_kembali` date NOT NULL,
+  `keterangan` text DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_buku_has_anggota_buku1` (`idbuku`),
+  KEY `fk_buku_has_anggota_anggota1` (`idanggota`),
+  CONSTRAINT `fk_buku_has_anggota_anggota1` FOREIGN KEY (`idanggota`) REFERENCES `anggota` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_buku_has_anggota_buku1` FOREIGN KEY (`idbuku`) REFERENCES `buku` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `peminjaman`
+--
+
+LOCK TABLES `peminjaman` WRITE;
+/*!40000 ALTER TABLE `peminjaman` DISABLE KEYS */;
+INSERT INTO `peminjaman` VALUES (2,1,1,'1','2022-04-01','2022-04-08',NULL),(3,3,2,'1','2022-04-01','2022-04-08',NULL);
+/*!40000 ALTER TABLE `peminjaman` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `penerbit`
+--
+
+DROP TABLE IF EXISTS `penerbit`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `penerbit` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(45) NOT NULL,
+  `alamat` text DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `website` varchar(45) DEFAULT NULL,
+  `telp` varchar(15) DEFAULT NULL,
+  `cp` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `penerbit`
+--
+
+LOCK TABLES `penerbit` WRITE;
+/*!40000 ALTER TABLE `penerbit` DISABLE KEYS */;
+INSERT INTO `penerbit` VALUES (1,'PT. Yudhistira','Tebet',NULL,NULL,NULL,NULL),(2,'PT. Gema Insani Press','Depok',NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `penerbit` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pengarang`
+--
+
+DROP TABLE IF EXISTS `pengarang`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pengarang` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(45) NOT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `hp` varchar(15) DEFAULT NULL,
+  `foto` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pengarang`
+--
+
+LOCK TABLES `pengarang` WRITE;
+/*!40000 ALTER TABLE `pengarang` DISABLE KEYS */;
+INSERT INTO `pengarang` VALUES (1,'Siti Aminah','siti@gmail.com',NULL,NULL),(2,'Deden Hamdani','deden@gmail.com',NULL,NULL);
+/*!40000 ALTER TABLE `pengarang` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fullname` varchar(30) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `password` varchar(40) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `role` enum('admin','operator') NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'Nasrul','nasrul','3e8d3abf06cf0ffae9f665559fc12b6af087913a','nasrul99@gmail.com','admin'),(2,'Inaya Azmi Taqiyya','inaya','6d69af5bb41e795641f42c76f047fe7c468f0d40','inaya@gmail.com','operator');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-04-22 10:12:43

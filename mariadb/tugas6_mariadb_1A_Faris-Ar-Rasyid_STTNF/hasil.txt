@@ -1,0 +1,204 @@
+
+Setting environment for using XAMPP for Windows.
+L420@L420-PC c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 11
+Server version: 10.4.21-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| covid_rest-api     |
+| dbpeg              |
+| dbpegawai          |
+| dvwa               |
+| information_schema |
+| laravel_rest_api   |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+10 rows in set (0.001 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| covid_rest-api     |
+| dbpeg              |
+| dbpegawai          |
+| dvwa               |
+| information_schema |
+| laravel_rest_api   |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+10 rows in set (0.001 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| covid_rest-api     |
+| dbpeg              |
+| dbpegawai          |
+| dbtraining         |
+| dvwa               |
+| information_schema |
+| laravel_rest_api   |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+11 rows in set (0.014 sec)
+
+MariaDB [(none)]> use dbtraining;
+Database changed
+MariaDB [dbtraining]> show tables
+    -> ;
++-----------------------+
+| Tables_in_dbtraining  |
++-----------------------+
+| kategori_kursus       |
+| kategori_pengajar     |
+| kategori_training     |
+| kursus                |
+| pengajar              |
+| pengajar_has_peserta  |
+| pengajar_has_training |
+| peserta               |
+| training              |
++-----------------------+
+9 rows in set (0.010 sec)
+
+MariaDB [dbtraining]> select kategori_kursus.pemograman, kursus.PHP AS deskripsi
+
+    -> from kategori_kursus right join kursus
+    -> on kursus.id = kategori_kursus.idkursus;
+ERROR 1054 (42S22): Unknown column 'kategori_kursus.pemograman' in 'field list'
+MariaDB [dbtraining]> select kategori_kursus.pemograman, kursus.PHP AS deskripsi
+
+    -> from kategori_kursus right join kursus
+    -> on kursus.id = kategori_kursus.id;
+ERROR 1054 (42S22): Unknown column 'kategori_kursus.pemograman' in 'field list'
+MariaDB [dbtraining]> select kursus.PHP as deskripsi, kategori_kursus.pemograman
+
+    -> from kursus right join kategori_kursus
+    -> on kategori_kursus.id = kursus.id;
+ERROR 1054 (42S22): Unknown column 'kategori_kursus.pemograman' in 'field list'
+MariaDB [dbtraining]> select * from kursus;
++----+------------+----------+------------+--------------------+
+| id | PHP        | Linux    | Ms. Office | kategori_kursus_id |
++----+------------+----------+------------+--------------------+
+|  1 | Pemograman | Jaringan | Office     |                  1 |
+|  2 | Pemograman | Jaringan | Office     |                  2 |
++----+------------+----------+------------+--------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [dbtraining]> select * from kategori_kursus;
++----+-------------+----------+--------+
+| id | pemrograman | jaringan | office |
++----+-------------+----------+--------+
+|  1 | PHP         | Linux    | Excel  |
+|  2 | JS          | Mikrotik | Word   |
++----+-------------+----------+--------+
+2 rows in set (0.000 sec)
+
+MariaDB [dbtraining]> SELECT  kursus.PHP, kategori_kursus.pemrograman
+    -> from kursus left join kategori_kursus
+    -> on kategori_kursus.id - kursus.id;
++------------+-------------+
+| PHP        | pemrograman |
++------------+-------------+
+| Pemograman | PHP         |
+| Pemograman | JS          |
++------------+-------------+
+2 rows in set (0.056 sec)
+
+MariaDB [dbtraining]> select * from kategori_pengajar;
++----+----------+------------+-------------+
+| id | internal |  eksternal |  freelancer |
++----+----------+------------+-------------+
+|  1 | guru     | guru       | guru        |
+|  2 | dosen    | dosen      | dosen       |
++----+----------+------------+-------------+
+2 rows in set (0.001 sec)
+
+MariaDB [dbtraining]> select * from pengajar;
++----+--------+-------------+----------------------+
+| id | nama   | email       | kategori_pengajar_id |
++----+--------+-------------+----------------------+
+|  1 | yanto  | yanto@g.com |                    1 |
+|  2 | wiliam | wil@g.com   |                    2 |
++----+--------+-------------+----------------------+
+2 rows in set (0.000 sec)
+
+MariaDB [dbtraining]> SELECT pengajar.nama, kategori_pengajar.internal
+    -> from pengajar left join kategori_pengajar
+    -> on kategori_pengajar.id = pengajar.id;
++--------+----------+
+| nama   | internal |
++--------+----------+
+| yanto  | guru     |
+| wiliam | dosen    |
++--------+----------+
+2 rows in set (0.001 sec)
+
+MariaDB [dbtraining]> SELECT peserta.nama, kategori_training.public, training.tg
+l_mulai, training.tgl_akhir, training.tempat, kursus.nama, kategori_kursus.pemog
+raman, pengajar.nama, kategori_pengajar.internal
+    -> from training
+    -> inner join peserta on peserta.id = pengajar.id
+    -> inner join kategori_training on kategori_training.id = training.id
+    -> inner join kategori_kursus on kategori_kursus.id = kursus.nama
+    -> inner join kategori_pengajar on kategori_pengajar.id = pengajar.id;
+ERROR 1054 (42S22): Unknown column 'training.tgl_mulai' in 'field list'
+MariaDB [dbtraining]> SELECT peserta.nama, kategori_training.public, training.tg
+l_mulai, training.tgl_akhir, training.tempat, kursus.nama, kategori_kursus.pemog
+raman, pengajar.nama, kategori_pengajar.internal
+    -> inner join peserta on peserta.id = pengajar.id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
+corresponds to your MariaDB server version for the right syntax to use near 'inn
+er join peserta on peserta.id = pengajar.id' at line 2
+MariaDB [dbtraining]> SELECT peserta.nama, kategori_training.public, training.tg
+l_mulai, training.tgl_akhir, training.tempat, kursus.nama, kategori_kursus.pemog
+raman, pengajar.nama, kategori_pengajar.internal
+    -> inner join kategori_pengajar on kategori_pengajar.id = pengajar.id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
+corresponds to your MariaDB server version for the right syntax to use near 'inn
+er join kategori_pengajar on kategori_pengajar.id = pengajar.id' at line 2
+MariaDB [dbtraining]> Select peserta.nama, kategori_training.public
+    -> from peserta
+    -> inner join peserta on peserta.id = kategori_peserta.id;
+ERROR 1066 (42000): Not unique table/alias: 'peserta'
+MariaDB [dbtraining]> Select peserta.nama, kategori_training.public
+    -> from peserta
+    -> Select peserta.nama, kategori_.public
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
+corresponds to your MariaDB server version for the right syntax to use near 'Sel
+ect peserta.nama, kategori_.public' at line 3
+MariaDB [dbtraining]> Select peserta.nama, pengajar.nama,
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
+corresponds to your MariaDB server version for the right syntax to use near '' a
+t line 1
+MariaDB [dbtraining]> Select peserta.nama, pengajar.nama
+    -> from pengajar
+    -> inner join pengajar om pengajar.id = peserta.id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
+corresponds to your MariaDB server version for the right syntax to use near 'pen
+gajar.id = peserta.id' at line 3
+MariaDB [dbtraining]>

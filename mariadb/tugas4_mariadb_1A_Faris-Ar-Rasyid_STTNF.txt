@@ -1,0 +1,130 @@
+
+Setting environment for using XAMPP for Windows.
+B10S@DESKTOP-T0A0AR7 c:\xampp
+
+-- masuk ke ruang DB dbpegawai melalui CMD
+# mysql -u root -p dbpegawai
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 9
+Server version: 10.4.24-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+-- tampilkan data pegawai yang umurnya paling muda gunakan klausa sub queri
+MariaDB [dbpegawai]> select * from staff where umur = (select min(umur) from staff);
++----+-------+-------+--------+------+-------------+------+
+| id | nip   | nama  | gender | umur | berat_badan | foto |
++----+-------+-------+--------+------+-------------+------+
+| 10 | 52514 | yanto | L      |   18 |          42 |      |
++----+-------+-------+--------+------+-------------+------+
+1 row in set (0.002 sec)
+
+-- tampilkan data pegawai yang paling gemuk gunakan klausa sub queri
+MariaDB [dbpegawai]> select * from staff where berat_badan = (select max(berat_badan) from staff);
++----+-------+--------+--------+------+-------------+------+
+| id | nip   | nama   | gender | umur | berat_badan | foto |
++----+-------+--------+--------+------+-------------+------+
+|  5 | 22314 | wiliam | L      |   44 |          80 |      |
++----+-------+--------+--------+------+-------------+------+
+1 row in set (0.000 sec)
+
+-- cari data pegawai yang berawalan namanya muhammad gunakan klausa like
+MariaDB [dbpegawai]> select nama,gender,umur from staff
+    -> where nama like '%muhammad%';
++----------+--------+------+
+| nama     | gender | umur |
++----------+--------+------+
+| muhammad | L      |   60 |
++----------+--------+------+
+1 row in set (0.001 sec)
+
+-- cari data pegawai yang berakhiran namanya santoso gunakan klausa like
+MariaDB [dbpegawai]> select nama,gender,umur from staff
+    -> where nama like '___santoso%';
+Empty set (0.000 sec)
+
+
+MariaDB [dbpegawai]> select nama,gender,umur from staff
+    -> where nama like '%santoso%';
+Empty set (0.000 sec)
+
+-- cari data pegawai yang berinisial asep gunakan klausa like
+MariaDB [dbpegawai]> select nama,gender,umur from staff
+    -> where nama like '%asep%';
+Empty set (0.000 sec)
+
+-- cari data pegawai yang huruf ke-5 nya S gunakan klausa like
+MariaDB [dbpegawai]> select nama,gender,umur from staff
+    -> where nama like '___s%';
+Empty set (0.000 sec)
+
+-- tampilkan gender pegawai dengan klausa distinct
+MariaDB [dbpegawai]> select distinct gender from staff;
++--------+
+| gender |
++--------+
+| L      |
+| P      |
++--------+
+2 rows in set (0.000 sec)
+
+-- dengan klausa case, tampilkan data nama, gender, keterangan:
+
+  jika berat badannya 0 - 40 = kurus
+
+  jika berat badannya 41 - 75 = normal
+
+  jika berat badannya 76 - 80 = gemuk
+
+  jika berat badannya > 80 = obesitas
+
+MariaDB [dbpegawai]> select nama,gender,
+    -> case
+    -> when berat_badan >=0 AND berat_badan <=40 then 'kurus'
+    -> when berat_badan >=41 AND berat_badan <=75 then 'normal'
+    -> when berat_badan >=76 AND berat_badan <=80 then 'gemuk'
+    -> when berat_badan >=80 then 'obesitas'
+    -> else 'tidak diketahui'
+    -> end as keterangan_berat_badan
+    -> from staff;
++----------+--------+------------------------+
+| nama     | gender | keterangan_berat_badan |
++----------+--------+------------------------+
+| yanto    | L      | normal                 |
+| budi     | L      | normal                 |
+| ahmad    | L      | kurus                  |
+| muhammad | L      | normal                 |
+| wiliam   | L      | gemuk                  |
+| wati     | P      | kurus                  |
+| ayu      | P      | kurus                  |
+| neni     | P      | kurus                  |
+| hu tao   | P      | kurus                  |
+| yanto    | L      | normal                 |
+| yanto    | L      | normal                 |
+| yanto    | L      | normal                 |
++----------+--------+------------------------+
+12 rows in set (0.000 sec)
+
+-- hitung jumlah data pegawai berdasarkan gendernya gunakan klausa group by
+MariaDB [dbpegawai]> select gender,sum(id) as total_pegawai
+    -> from staff group by gender;
++--------+---------------+
+| gender | total_pegawai |
++--------+---------------+
+| L      |            48 |
+| P      |            30 |
++--------+---------------+
+2 rows in set (0.000 sec)
+
+--tampilkan data jumlah pegawai berdasarkan gendernya, jml pegawai >= 10
+
+  gunakan klausa having
+
+MariaDB [dbpegawai]> select gender, count(*) as total_pegawai from staff group by gender
+    -> having count(*) >= 10;
+Empty set (0.000 sec)
+
+MariaDB [dbpegawai]>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <style>
+    table, td, th {
+      border: 1px solid black;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th {
+      text-align: center;
+    }
+    h2 {
+      text-align:center; 
+      vertical-align:middle;}
+    </style>
+<h2>Daftar Siswa</h2>
+
+<p></p>
+<table id="demo1" border="0">    
+</table>
+<script>
+let text1 = "";
+let i = 1;
+let a = "<tr>"+
+        "<th>"+"No"+"</th>"+
+        "<th>"+"Nama"+"</th>"+
+        "<th>"+"Alamat"+"</th>"+
+    "</tr>";
+while (i < 11) {
+  text1 +=  "<tr>"+"<td>" + i+ "</td>"+"<td>Siswa " + i+ "</td>"+"<td>Jl. Margonda No " + i+ "</td>"+"</tr>";
+  i++;
+}
+document.getElementById("demo1").innerHTML = a+text1;
+</script>
+
+</body>
+</html>

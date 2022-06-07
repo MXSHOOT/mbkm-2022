@@ -1,0 +1,73 @@
+<script>
+    //belajar array assoc
+
+    var karyawan = new Array();
+    karyawan['Manager'] = "Budi"
+    karyawan['Manager'] = "Siti"
+    karyawan['Kabag'] = "Andi"
+    karyawan['Asisten Manager'] = "Deden"
+    karyawan['Staff'] = "Wawan"
+    karyawan['Staff'] = "Mimin"
+
+
+    let judul = ['No.', 'Nama', 'Jabatan', 'Gaji Pokok', 'Tunjangan Jabatan', 'Total Gaji'];
+</script>
+<h3 align="center">Daftar karyawan</h3>
+<table align="center" cellpadding="10" cellspacing="0" width="40%" border="2">
+    <thead>
+        <tr bgcolor="#BC986A">
+            <script>
+                for (let jdl of judul) {
+                    document.write(`<th>${jdl}</th>`)
+                }
+            </script>
+        </tr>
+    </thead>
+    <tbody>
+        <script>
+            let no = 1;
+            for (let n of karyawan) {
+                //warna kotak
+                let warna = (no % 2 == 1) ? '#DAAD86' : '#FBEEC1';
+                //gaji
+                let gaji, predikat;
+                let skor = n[karyawan];
+                if (skor == "Manager") gaji = 20000000;
+                else if (skor == "Asisten Manager") gaji = 15000000;
+                else if (skor == "Kabag") gaji = 10000000;
+                else if (skor == "Staff") gaji = 5000000;
+                else gaji = '';
+                let tunjab = 0.2*gaji;
+                let toga = gaji+tunjab;
+                //gaji
+                switch (gaji) {
+                    case 20000000:
+                        tunjab;
+                        toga;
+                        break;
+                    case 15000000:
+                        tunjab;
+                        toga;
+                        break;
+                    case 10000000:
+                        tunjab;
+                        toga;
+                        break;
+                    case 5000000:
+                        tunjab;
+                        toga;
+                        break;
+                    default:
+                        predikat = '';
+                }
+                document.write(`<tr bgcolor="${warna}">
+                    <td>${no++}</td>
+                    <td>${n}</td>
+                    <td>${n[karyawan]}</td>
+                    <td>${gaji}</td>
+                    <td>${tunjab}</td>
+                    <td>${toga}</td>
+                </tr>`)
+            }
+        </script>
+    </tbody>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pernilaian</title>
+</head>
+<body>
+    <style>
+        body{
+            text-align:center; 
+        }
+        </style>
+    <script>
+        var nama_mahasiswa  = prompt("Inputkan nama mahasiswa:");
+        var mata_kuliah = prompt("Inputkan nama matakuliah:");
+        var nilai = prompt("Inputkan nilai akhir:");
+        var grade = "";
+
+        if(nilai > 85 && nilai <= 100) grade = "A"
+        else if(nilai > 75 && nilai <= 85) grade = "B"
+        else if(nilai >= 60 && nilai <= 75) grade = "C"
+        else if(nilai > 30 && nilai < 60) grade = "D"
+        else if(nilai >= 0 && nilai <= 30) grade = "E"
+        else grade = "Tidak Ada";
+
+        var pesan = "";
+        switch(grade){
+            case "A":
+                pesan = "Memuaskan";
+                break;
+            case "B":
+                pesan = "Baik";
+                break;
+            case "C":
+                pesan = "Cukup";
+                break;
+            case "D":
+                pesan = "Kurang";
+                break;
+            case "E":
+                pesan = "Buruk";
+                break;
+            default:
+                document.write("<p>Opps! anda mungkin belum mengikuti ulangan</p>");
+        }
+
+        var status = (nilai >= 60 && nilai <= 100) ? "Lulus" : "Gagal";
+
+        if(status == "Lulus")document.write("<h2>Selamat kamu mendapatkan " + pesan + "</h2>")
+        else document.write("<h2>Kamu TIDAK LULUS SILAHKAN "+"<a href="+"nilai.html"+">"+"NGULANG"+"</a>"+" LAGI"+"</h2>");
+        
+        document.write("<h1>Penilaian</h1>" +
+                "<br/>Nama :" + nama_mahasiswa +
+                "<br/>Matkul :" + mata_kuliah +
+                "<br/>Nilai :" + nilai +
+                "<br/>Grade :" + grade + " (Nilai Anda "+pesan+")"+
+                "<br/>Status :" + status);
+
+    </script>
+</body>
+</html>

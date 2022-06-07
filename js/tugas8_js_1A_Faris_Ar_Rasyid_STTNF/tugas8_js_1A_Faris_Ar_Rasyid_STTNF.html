@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Latihan 5 Jquery - Event</title>
+        <script src="js/jquery.js"></script>
+        <!-- awal suara hewan -->
+        <script>
+            $("document").ready(function () {
+                $("div.kuda").dblclick(function () {
+                    $(this).css({
+                        background: "url('https://store-images.s-microsoft.com/image/apps.62288.13620585470013536.11ea7ace-068b-4450-a62e-2233e0b32064.39ccf900-bfd0-48d2-8259-e9bbfa50f4c2?mode=scale&q=90&h=300&w=300')"
+                    });
+                    $("<audio></audio>").attr({ 
+                        'src':'audio/horse.mp3',
+                        'autoplay':'autoplay'
+                    });
+                });
+                $("div.kuda").mouseout(function () {
+                    $(this).css({
+                        background: "greenyellow"
+                    });
+                });
+                $("div.singa").dblclick(function () {
+                    $(this).css({
+                        background: "url('https://apprecs.org/gp/images/app-icons/300/58/com.LionLiveWallpaperApp.jpg')"
+                    });
+                    $("<audio></audio>").attr({ 
+                        'src':'audio/singa.mp3',
+                        'autoplay':'autoplay'
+                    });
+                });
+                $("div.singa").mouseout(function () {
+                    $(this).css({
+                        background: "greenyellow"
+                    });
+                });
+                $("div.gajah").dblclick(function () {
+                    $(this).css({
+                        background: "url('https://www.andyroid.net/wp-content/uploads/2015/05/Wild-Elephant-Sim-3D-icon.png')"
+                    });
+                    $("<audio></audio>").attr({ 
+                        'src':'audio/gajah.mp3',
+                        'autoplay':'autoplay'
+                    });
+                });
+                $("div.gajah").mouseout(function () {
+                    $(this).css({
+                        background: "greenyellow"
+                    });
+                });
+                $("div.trex").dblclick(function () {
+                    $(this).css({
+                        background: "url('https://apprecs.org/gp/images/app-icons/300/70/com.wildfoot.trex.survival.jpg')"
+                    });
+                    $("<audio></audio>").attr({ 
+                        'src':'audio/trex.mp3',
+                        'autoplay':'autoplay'
+                    });
+                });
+                $("div.trex").mouseout(function () {
+                    $(this).css({
+                        background: "greenyellow"
+                    });
+                });
+            });
+           
+        </script>
+        <style type="text/css">
+            div.kuda,div.trex,div.singa,div.gajah {
+                background: rgb(139, 140, 134);
+                width: 300px;
+                height: 300px;
+                float: left;
+                margin: 10px;
+                cursor: pointer;
+            }
+        </style>
+        <!-- akhir suara hewan -->
+        <!-- awal pesan -->
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript">
+            $("document").ready(function () {
+                $(".flip").click(function () {
+                    $(".pesan").slideToggle("slow");
+                });
+            });
+            $("document").ready(function () {
+                $(".flip1").click(function () {
+                    $(".pesan1").slideToggle("slow");
+                });
+            });
+            $("document").ready(function () {
+                $(".flip2").click(function () {
+                    $(".pesan2").slideToggle("slow");
+                });
+            });
+        </script>
+        <style type="text/css">
+            /* awal pesan 1 */
+            div.pesan {
+                display: none;
+                text-align: left;
+            }
+
+            div.pesan,
+            p.flip {
+                margin: 0px;
+                padding: 5px;
+                width: 800px;
+                background: rgb(232, 233, 231);
+                border: 2px ridge red;
+            }
+            p.flip{
+                text-align: center;
+            }
+            /* akhir pesan 1 */
+            /* awal pesan 2 */
+            div.pesan1 {
+                display: none;
+                text-align: left;
+            }
+
+            div.pesan1,
+            p.flip1 {
+                margin: 0px;
+                padding: 5px;
+                width: 800px;
+                background: rgb(232, 233, 231);
+                border: 2px ridge red;
+            }
+            p.flip1{
+                text-align: center;
+            }
+            /* akhir pesan 2 */
+            /* awal pesan 3 */
+            div.pesan2 {
+                display: none;
+                text-align: left;
+            }
+
+            div.pesan2,
+            p.flip2 {
+                margin: 0px;
+                padding: 5px;
+                width: 800px;
+                background: rgb(232, 233, 231);
+                border: 2px ridge red;
+            }
+            p.flip2{
+                text-align: center;
+            }
+            /* akhir pesan 3 */
+        </style>
+        <!-- akhir pesanA -->
+    </head>
+
+    <body>
+        
+        <p align="center">Klik kotak untuk mengetahui hewan apa</p>
+        <hr align=”center” size=“2” noshade> </hr>
+        <div class="kuda"></div>
+        <div class="singa"></div>
+        <div class="gajah"></div>
+        <div class="trex"></div>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <hr align=”center” size=“2” noshade> </hr>
+        <center>
+            <div class="pesan">
+                Company Profile<br />
+                <p>
+                    NF COMPUTER adalah bagian dari grup Nurul Fikri yang telah dipercaya oleh masyarakat Indonesia di bidang pendidikan dan peningkatan sumber daya manusia selama lebih dari 24 tahun. Alumni-alumninya telah berkiprah dan diakui kualitas kerja dan integritasnya oleh dunia usaha.
+                </p><p>
+                    NF COMPUTER dirintis sejak tahun 1994 dan merupakan sebuah lembaga di bidang pendidikan dan pelatihan IT (Information Technology). Kami berkomitmen menjadi partner perusahaan Anda dalam mengembangkan kemampuan serta keahlian SDM di bidang IT. Dengan komitmen tersebut, kami mempersiapkan tim pengajar yang professional dan berpengalaman di bidang IT.
+                </p><p>
+                    Di Era Industri 4.0 saat ini, teknologi informasi berkembang sangat cepat, oleh karena itu pengembangan sumber daya manusia di bidang IT menjadi sebuah kebutuhan yang perlu diprioritaskan. NF COMPUTER menjadi jawaban yang tepat atas kebutuhan pengembangan kompetensi IT. Sehingga kami selalu berusaha untuk terus berinovasi terhadap teknologi terbaru.
+                </p>
+            </div>
+            <p class="flip"> Company Profile</p>
+            <br/>
+            <div class="pesan1">
+                Visi & Misi<br />
+                <p>
+                    <h1><b>Visi</b></h1>
+                    Menjadi institusi pelatihan yang kompeten dan profesional di bidang pendidikan teknologi informasi dan komunikasi di berbagai wilayah indonesia.
+                </p><p>
+                    <h1><b>Misi</b></h1>
+                    Membangun, memelihara dan mengembangkan institusi pelatihan bisnis berdaya saing tinggi, berkarakter profesional, kompeten, mengedepankan integritas dan tanggung jawab sosial, dengan mengembangkan dan menyediakan produk produk pendidikan dan pelatihan teknologi informasi dan komunikasi prima.
+                </p>
+            </div>
+            <p class="flip1"> Visi & Misi</p>
+            <br/>
+            <div class="pesan2">
+                Deskripsi Bisnis<br />
+                <p>
+                    NF COMPUTER menyelenggarakan Pelatihan dan Pendidikan di bidang Teknologi Informasi dan Komunikasi (IT Training) yang dibagi menjadi lima produk.
+                </p><p>
+                    <ul>Pelatihan (training) ini dibagi dalam beberapa kategori produk yaitu :
+
+                    <li>Public Class, merupakan short course bidang TIK (Teknologi Informasi dan Komunikasi) yang berbasis Linux maupun Windows.</li>
+
+                    <li>Exclusive Class, merupakan paket training yang diberikan kepada customer dengan durasi 6-8 jam perhari dengan jumlah peserta minimal 2 orang dan pelaksanaan pelatihannya di NF Computer.</li>
+
+                    <li>In House/In Company Training, yaitu pelatihan TIK yang dikustomisasi untuk kebutuhan perusahaan-perusahaan</li>
+                </ul></p><p>
+                    <ul>Paket bisnis khusus dibagi ke dalam beberapa kategori produk yang dikelola secara profesional oleh NF COMPUTER yaitu :
+
+                    <li>Kerjasama Pendidikan Sekolah, yaitu Divisi khusus pendidikan sekolah dimana NF COMPUTER bekerjasama dalam hal : Kerjasama pembangunan Lab Komputer, Pengajaran Komputer dan kombinasi antara keduanya.</li>
+
+                    <li>Usulan Produk lain: Produk-produk yang menurut lokasi diminati oleh pasar tapi belum ada dalam daftar produk pelatihan dan pendidikan NF COMPUTER, dapat diajukan oleh cabang untuk menjadi produk yang dipertimbangkan sebagai produk dan akan menjadi bagian dari penyelenggaraan pelatiahan dan pendidikan di cabang tersebut pada periode yang dianggap tepat oleh NF COMPUTER.</li>
+                </ul></p>
+            </div>
+            <p class="flip2">Deskripsi Bisnis</p>
+        </center>
+    </body>
+
+</html>

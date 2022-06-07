@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 16px;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+     width: 100%;
+  }
+}
+</style>
+<body>
+
+<form action="/action_page.php" style="border:1px solid #ccc">
+  <div class="container">
+    <h1>Sign Up</h1>
+    <p>it's quick and easy</p>
+    <hr>
+
+    <input type="text" placeholder="First Name" id="fname" name="fname">
+    <input type="text" placeholder="Last Name" id="lname" name="lname">
+    <input type="text" placeholder="Enter Email" name="email" required>
+    <input type="password" placeholder="New Password" name="psw" required>
+
+    <!--awal hari while-->
+    <select>
+      <option value="">-Hari-</option>
+      <script type="text/javascript">
+              var bulan = "";
+              let b = 1, t = 30
+              while (b <= t){
+              document.write("<option>" + b + "</option>");
+              b += 1
+              }
+      </script>
+  </select>
+    <!--akhir hari -->
+    <!--awal bulan for in-->
+    <div>
+    <select>
+      <option value="">-Bulan-</option>
+      <script type="text/javascript">
+          const tanggal = ["January","February","March","April","May","June","July","August","September","October","November","December"];  
+          for (let t in tanggal) {
+              document.write(`<option> ${tanggal[t]}<option>`);
+          }
+      </script>
+    </select>
+    <!--akhir bulan -->
+    <!--awal tahun break continue-->
+    <select>
+      <option value="">-- Tahun Lahir --</option>
+      <script>
+          let tahun = 2022;
+          let umur;
+          for(let i=tahun;i>=tahun-100;i--){
+              umur = tahun - i;
+              if(umur < 13){continue;}
+              if(umur > 60){break;}
+              document.write(`<option>${i}</option>`)
+          }
+      </script>
+  </select>
+    <!--akhir akhir -->
+
+    <!--awal gender for in-->
+    <div>
+      <script>
+        const array = ["Pria","Wanita","Custom"];
+        for (let gender in array) {
+            document.write(`<fieldset><input type="radio" id="${array[gender]}" name="gender" value="30"><label for="${array[gender]}">${array[gender]}</label></fieldset>`);
+        }
+      </script>
+    </div>
+    <!--akhir gender -->
+    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+    <div class="clearfix">
+      <button type="button" class="cancelbtn">Cancel</button>
+      <button type="submit" class="signupbtn">Sign Up</button>
+    </div>
+  </div>
+</form>
+</body>
+</html>

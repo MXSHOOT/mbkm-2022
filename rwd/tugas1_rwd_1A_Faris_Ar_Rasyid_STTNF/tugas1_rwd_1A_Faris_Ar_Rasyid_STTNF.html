@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Belajar RWD Bootstrap</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <!-- ini baris pertama -->
+            <div class="row">
+                <div class="col-md-12">
+                    <!----------- awal carousel ----------->
+                    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="images/d1.jpg" class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Gambar 1</h5>
+                                    <p>Ini Gambar 1</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="images/d2.jpeg" class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Gambar 2</h5>
+                                    <p>Ini Gambar 2</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="images/d3.png" class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Gambar 3</h5>
+                                    <p>Ini Gambar 3</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <!----------- akhir carousel ---------->
+                </div>
+            </div>
+            <!-- ini baris kedua -->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- -------awal navbar--------- -->
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+                        <div class="container-fluid">
+                            <a class="navbar-brand" href="#">Deemo II</a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Link</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            Dropdown
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <li><a class="dropdown-item" href="#">Action</a></li>
+                                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link disabled">Disabled</a>
+                                    </li>
+                                </ul>
+                                <form class="d-flex">
+                                    <input class="form-control me-2" type="search" placeholder="Search"
+                                        aria-label="Search">
+                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                                </form>
+                            </div>
+                        </div>
+                    </nav>
+                    <!-- -------akhir navbar--------- -->
+                </div>
+            </div>
+            <!-- ini baris ketiga -->
+            <div class="row">
+                <div class="col-md-3">
+                    <!-- awal list group -->
+                    <br/>
+                    <center>
+                    <div class="container-fluid cxt-padded bg-faded">
+                        <div class="container">
+                          <div class="media">
+                            <img class="d-flex mr-4 rounded-circle" src="images/p.jpg" width="150" alt="Generic placeholder image">
+                            <div class="media-body">
+                                <br/>
+                              <p>Deemo II</p>
+                              <a href="https://play.google.com/store/apps/details?id=com.rayark.deemo2"><img src="images/dp.png" class="img-fluid" width="150"></a>
+                              <a href="https://apps.apple.com/app/deemo2/id1531981487"><img src="images/da.png" class="img-fluid" width="150"></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </center>
+                    <!-- akhir list group -->
+                </div>
+                <div class="col-md-6">
+                    <!-- ini awal konten -->
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    When Music Plays, the Sun Shall Stay
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <h3>
+                                        <strong>
+                                            When Music Plays, the Sun Shall Stay.
+                                        </strong>
+                                    </h3> 
+                                    <p>
+                                        DEEMO II takes place in a world where it never stops raining… but this is no ordinary rain. 
+                                        Any creature touched by this rain turns into a flurry of white flower petals before entirely 
+                                        disappearing from the world. As such, everyone has taken refuge within a huge train station, 
+                                        including our female main character, Echo. There happens to be a giant piano in this train station 
+                                        that, when played, cuts through the clouds, allowing the sun to shine through, 
+                                        while also protecting the train station from the threat of the rain..
+                                    </p>
+                                    <center><img src="images/s1.png" class="img-rounded" alt="Cinque Terre" width="600" height="350"></center>
+                                    <p>
+                                        In DEEMO II players will play as Echo and follow the ethereal Deemo to explore this world 
+                                        and search for a way to put an end to the rain once and for all.
+                                    </p>
+                                    <center>
+                                        <img src="images/s2.png" class="img-rounded" alt="Cinque Terre" width="600" height="350">
+                                    </center>
+                                    <center>
+                                        <img src="images/s3.png" class="img-rounded" alt="Cinque Terre" width="600" height="350">
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Surprising Non-Rhythm Game Players with a Hand-Drawn Style World
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <h3>
+                                        <strong>
+                                            Surprising Non-Rhythm Game Players with a Hand-Drawn Style World.
+                                        </strong>
+                                    </h3> 
+                                    <p>
+                                        DEEMO II’s gameplay will be composed of a mixture of rhythm and puzzle-solving modes. 
+                                        Differing from Rayark’s previous works, these two elements will be unique in their 
+                                        own ways, with the hope that they’ll provide a fresh new experience for players.
+                                    </p>
+                                    <p>
+                                        In the rhythm mode, the charts will not only embody DEEMO’s worldview, the notes 
+                                        and tempo changes will also be far more dynamic than ever seen before.
+                                    </p>
+                                    <center>
+                                        <img src="images/s4.png" class="img-rounded" alt="Cinque Terre" width="600" height="350">
+                                    </center>
+                                    <center>
+                                        <img src="images/s5.png" class="img-rounded" alt="Cinque Terre" width="600" height="350">
+                                    </center>
+                                    <p>
+                                        From the newly released in-game footage we can see that players will be able 
+                                        to play as Echo and explore all throughout the expansive train station. 
+                                        By interacting with different NPCs as well as aiding them in solving their 
+                                        problems, players will be able to slowly uncover the mysteries of the train 
+                                        station and delve deeper into the secrets of the rain.
+                                    </p>
+                                    <center>
+                                        <img src="images/s6.png" class="img-rounded" alt="Cinque Terre" width="600" height="350">
+                                    </center>
+                                    <center>
+                                        <img src="images/s7.png" class="img-rounded" alt="Cinque Terre" width="600" height="350">
+                                    </center>
+                                    <center>
+                                        <img src="images/s8.png" class="img-rounded" alt="Cinque Terre" width="600" height="350">
+                                    </center>
+                                    <p>
+                                        Ming-Yang Yu, the producer of DEEMO II stated that the design for DEEMO II 
+                                        caters to all types of gamers - it’s a game that’s enjoyable for all.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    DEEMO II
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <h3>
+                                        <strong>
+                                            DEEMO II.
+                                        </strong>
+                                    </h3> 
+                                    <p>
+                                        DEEMO II takes place in a world where it never stops raining… but this is 
+                                        no ordinary rain. Any creature touched by this rain turns into a flurry of 
+                                        white flower petals before entirely disappearing from the world. As such, 
+                                        everyone has taken refuge within a huge train station, including our female 
+                                        main character, Echo. There happens to be a giant piano in this train station 
+                                        that, when played, cuts through the clouds, allowing the sun to shine through, 
+                                        while also protecting the train station from the threat of the rain.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ini akhir konten -->
+                </div>
+                <div class="col-md-3">
+                    <!-- awal list group -->
+                    <center>
+                    <fieldset>
+                        <legend>Tautan</legend>
+                            <a href="https://www.w3schools.com/" class="btn btn-info" role="button">w3schools</a>
+                            <a href="https://www.youtube.com/" class="btn btn-info" role="button">Youtube</a>
+                            <a href="https://www.rayark.com/" class="btn btn-info" role="button">Rayark</a>
+                    </fieldset> 
+                    </center>
+                    <br/>
+                    <fieldset>
+                        <legend>Berita</legend>
+                        <p>
+                            Sebuah hal yang tidak terduga telah tiba sekitar 2100 tahun yang lalu, sebuah kisah 200 hari tampa mengetahui apa yang terjadi.
+                        </p>
+                    </fieldset>
+                    <br/>
+                    <fieldset>
+                        <legend>Iklan</legend>
+                        <img src="https://addiction.id/wp-content/uploads/2020/02/Pocari-Sweat.jpg" alt="iklan pocari" width="100%" />
+                    </fieldset>  
+                    <!-- akhir list group -->
+                </div>
+            </div>
+            <!-- ini baris keempat -->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- ini awal footer -->
+                    <div class="alert alert-info" role="alert">
+                        by Rayark Inc & Edit design 1A Faris Ar Rasyid Kampus Merdeka
+                    </div>
+                    <!-- ini akhir footer -->
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+</html>

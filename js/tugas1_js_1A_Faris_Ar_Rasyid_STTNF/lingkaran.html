@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lingkaran</title>
+</head>
+<body>
+    <marquee onmouseover="stop()" onmouseout="start()">
+        <h3>Belajar Kondisi IF</h3>
+    </marquee>
+    <hr />
+    <p>
+        <h4>Perhitungan Lingkaran</h4>
+        Masukan nilai jari - jari <br/>
+        <input type="text" id="r"><br/><br/>
+        <button onclick="hitung()">Hitung</button>
+    </p>
+    <p>
+        <h4>Hasil</h4>
+        Luas lingkaran<br/>
+        <input type="text" id="luas" disabled><br/>
+        Keliling lingkarang<br/>
+        <input type="text" id="keliling" disabled>
+    </p>
+    <script>
+        const phi = 3.14;
+        var luas;
+        var keliling;
+        var r;
+        var d;
+        function hitung() {
+            r = parseFloat(document.getElementById("r").value);
+            luas = phi * Math.pow(r,2);
+            d = 2 * r;
+            keliling = phi * d;
+            document.getElementById('luas').value = luas;
+            document.getElementById('keliling').value = keliling;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<script>
+    //-----------------membuat class------------------
+    class Gempa {
+        //member1 & 2 : variabel dan konstruktor
+        constructor(deteksi, lokasi, skala) {
+            this.tgl = deteksi;
+            this.tempat = lokasi;
+            this.ancaman = skala;
+
+        }
+        dampak(){
+            if(this.ancaman < 3){
+                document.write(`Tanggal deteksi gempa: ${this.tgl}
+                <br/>lokasi di ${this.tempat}, dampaknya tidak terasa<hr/>`);
+            }else if(this.ancaman < 5){
+                document.write(`Tanggal deteksi gempa: ${this.tgl}
+                <br/>lokasi di ${this.tempat}, dampaknya bangunan retak-retak<hr/>`);
+            }else if(this.ancaman < 7){
+                document.write(`Tanggal deteksi gempa: ${this.tgl}
+                <br/>lokasi di ${this.tempat}, dampaknya roboh<hr/>`);
+            }else if(this.ancaman > 6){
+                document.write(`Tanggal deteksi gempa: ${this.tgl}
+                <br/>lokasi di ${this.tempat}, dampaknya roboh dan berpotensi tsunami<hr/>`);
+            }else{
+                document.write(`tidak diketahu, silahkan cek kembali nilainya`);
+            }
+        }
+        mencetak() {
+            document.write(`Tanggal deteksi gempa: ${this.tgl}
+            <br/>Nama episentrum: ${this.tempat}
+            <br/>Skala: ${this.ancaman} <hr/>`);
+        }
+    }
+    //---------------ciptakan object------------------
+    let b1 = new Gempa('2022/03/08 03:02', 'Bagian Tengah Prefektur Yamaguchi', 1);
+    let b2 = new Gempa('2022/03/08 02:01', 'Lepas Pantai Prefektur Fukushima', 2);
+    let b3 = new Gempa('2022/03/07 23:58', 'Daerah Noto di Prefektur Ishikawa', 4);
+    let b4 = new Gempa('2022/03/07 23:25', 'Bagian Selatan Prefektur Chiba', 1);
+    let b5 = new Gempa('2022/03/07 23:06', 'Daerah Noto di Prefektur Ishikawa', 3);
+    let b6 = new Gempa('2022/03/07 17:09', 'Lepas Pantai Tokachi', 1);
+    let b7 = new Gempa('2022/03/07 14:36', 'Daerah Noto di Prefektur Ishikawa', 2);
+    let b8 = new Gempa('2022/03/07 08:34', 'Lepas Pantai Prefektur Miyagi', 1);
+    let b9 = new Gempa('2022/03/07 00:01', 'Bagian Selatan Pedalaman di Prefektur Akita', 2);
+    let b10 = new Gempa('2022/03/06 23:24', 'Lepas Pantai Prefektur Miyagi', 2);
+    //menggunakan member class
+    document.write('<br/><center><h1>Data Gempa Bumi di Jepang</h1></center><hr/>');
+    b1.mencetak();
+    b2.mencetak();
+    b3.mencetak();
+    b4.mencetak();
+    b5.mencetak();
+    b6.mencetak();
+    b7.mencetak();
+    b8.mencetak();
+    b9.mencetak();
+    b10.mencetak();
+    document.write('<br/><center><h1>Data Dampak Gempa Bumi di Jepang</h1></center><hr/>');
+    b1.dampak();
+    b2.dampak();
+    b3.dampak();
+    b4.dampak();
+    b5.dampak();
+    b6.dampak();
+    b7.dampak();
+    b8.dampak();
+    b9.dampak();
+    b10.dampak();
+    document.write('<br/><center><a href="https://www.data.jma.go.jp/multi/quake/index.html?lang=id">Web data gempa</a></center><hr/>');
+</script>

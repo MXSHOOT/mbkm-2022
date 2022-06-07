@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Belajar Struktur Kendali IF</title>
+    </head>
+
+    <body>
+        <marquee onmouseover="stop()" onmouseout="start()">
+            <h3>Belajar Kondisi IF</h3>
+        </marquee>
+        <hr />
+        <script>
+            var pembeli = "Saya"
+            var buah = "jeruk"
+            var harga_kg
+            var jumlah_kg = 3
+            var total_harga 
+
+            if (buah == "jeruk") {
+                harga_kg = 15000;
+                total_harga = jumlah_kg*harga_kg;} //TRUE 1
+            else if (buah == "mangga") {
+                harga_kg = 20000;
+                total_harga = jumlah_kg*harga_kg;} //TRUE 2
+            else if (buah == "apel") {
+                harga_kg = 25000;
+                total_harga = jumlah_kg*harga_kg;} //TRUE 3
+            else if (buah == "anggur") {
+                harga_kg = 30000;
+                total_harga = jumlah_kg*harga_kg;} //TRUE 4
+            else harga_kg = 0 //FALSE
+
+            document.write("nama :" + pembeli +
+                "<br/>nama buah :" + buah+
+                "<br/>harga per kg :" + harga_kg+
+                "<br/>jumlah kg :" + jumlah_kg +
+                "<br/>total :" + total_harga   
+            );
+
+            
+        </script>
+    </body>
+
+</html>

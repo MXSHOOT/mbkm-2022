@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Persegi Panjang</title>
+</head>
+<body>
+    <marquee onmouseover="stop()" onmouseout="start()">
+        <h3>Belajar Kondisi IF</h3>
+    </marquee>
+    <hr />
+    <p>
+        <h4>Perhitungan Persegi Panjang</h4>
+        Masukan lebar persegi panjang <br/>
+        <input type="text" id="lebar"><br/>
+        Masukan panjang persegi panjang<br/>
+        <input type="text" id="panjang"><br/><br/>
+        <button onclick="hitung()">Hitung</button>
+    </p>
+    <p>
+        <h4>Hasil</h4>
+        Luas persegi panjang<br/>
+        <input type="text" id="luas" disabled><br/>
+        Keliling persegi panjang<br/>
+        <input type="text" id="keliling" disabled>
+    </p>
+
+    <script>
+        var luas;
+        var keliling;
+        var lebar;
+        var panjang;
+        function hitung() {
+            lebar = parseFloat(document.getElementById("lebar").value);
+            panjang = parseFloat(document.getElementById("panjang").value);
+            luas = panjang * lebar;
+            keliling = 2 * (panjang + lebar);
+            document.getElementById('luas').value = luas;
+            document.getElementById('keliling').value = keliling;
+        }
+    </script>
+</body>
+</html>

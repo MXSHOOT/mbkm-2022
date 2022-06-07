@@ -1,0 +1,16 @@
+<form>
+    <input type="text" name="nama" id="namax" />
+    <button onclick="salamKlik()">Sapa</button>
+</form>
+<script>
+    function salam(nama) {
+        //ternary
+        let sapa = (nama == "") ? "Nama Belum Diinput" : `Selamat Pagi ${nama}`;
+        alert(sapa);
+    }
+
+    function salamKlik() {
+        let nama = document.getElementById("namax").value;
+        salam(nama);
+    }
+</script>

@@ -1,0 +1,280 @@
+
+Setting environment for using XAMPP for Windows.
+L420@L420-PC c:\xampp
+
+-- masuk ke ruang DB dbpegawai melalui CMD
+# mysql -u root -p dbpegawai
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.21-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+-- tampilkan tabel yang ada di dbpegawai
+MariaDB [dbpegawai]> show tables;
++---------------------+
+| Tables_in_dbpegawai |
++---------------------+
+| staff               |
++---------------------+
+1 row in set (0.038 sec)
+
+-- tampilkan deskripsi tabel yang ada di dbpegawai
+MariaDB [dbpegawai]> desc staff
+    -> ;
++-------------+---------------+------+-----+---------+-------+
+| Field       | Type          | Null | Key | Default | Extra |
++-------------+---------------+------+-----+---------+-------+
+| id          | int(11)       | NO   | PRI | NULL    |       |
+| nip         | char(5)       | NO   |     | NULL    |       |
+| nama        | varchar(30)   | NO   |     | NULL    |       |
+| gender      | enum('L','P') | NO   |     | NULL    |       |
+| umur        | float         | YES  |     | NULL    |       |
+| berat_batan | float         | YES  |     | NULL    |       |
+| foto        | varchar(30)   | YES  |     | NULL    |       |
++-------------+---------------+------+-----+---------+-------+
+7 rows in set (0.131 sec)
+
+MariaDB [dbpegawai]> select * from staff;
+Empty set (0.188 sec)
+
+MariaDB [dbpegawai]> INSERT INTO staff VALUES
+    -> ('',12314,'yanto','L',20,60,''),
+    -> (2,94212,'budi','L',30,65,''),
+    -> (3,32219,'yuyun','P',23,55,''),
+    -> (4,38937,'naya','P',29,56,''),
+    -> (5,52312,'wati','P',18,49,'');
+Query OK, 5 rows affected, 1 warning (0.098 sec)
+Records: 5  Duplicates: 0  Warnings: 1
+
+-- tampilkan seluruh data staff
+MariaDB [dbpegawai]> select * from staff;
++----+-------+-------+--------+------+-------------+------+
+| id | nip   | nama  | gender | umur | berat_batan | foto |
++----+-------+-------+--------+------+-------------+------+
+|  0 | 12314 | yanto | L      |   20 |          60 |      |
+|  2 | 94212 | budi  | L      |   30 |          65 |      |
+|  3 | 32219 | yuyun | P      |   23 |          55 |      |
+|  4 | 38937 | naya  | P      |   29 |          56 |      |
+|  5 | 52312 | wati  | P      |   18 |          49 |      |
++----+-------+-------+--------+------+-------------+------+
+5 rows in set (0.001 sec)
+
+MariaDB [dbpegawai]>
+
+-- tampilkan kolom2 tertentu di tabel staff
+MariaDB [dbpegawai]> select nip,nama,gender,umur from staff;
++-------+-------+--------+------+
+| nip   | nama  | gender | umur |
++-------+-------+--------+------+
+| 12314 | yanto | L      |   20 |
+| 94212 | budi  | L      |   30 |
+| 32219 | yuyun | P      |   23 |
+| 38937 | naya  | P      |   29 |
+| 52312 | wati  | P      |   18 |
++-------+-------+--------+------+
+5 rows in set (0.001 sec)
+
+-- tampilkan baris2 tertentu di tabel staff
+MariaDB [dbpegawai]> select 'yanto','budi' from staff;
++-------+------+
+| yanto | budi |
++-------+------+
+| yanto | budi |
+| yanto | budi |
+| yanto | budi |
+| yanto | budi |
+| yanto | budi |
++-------+------+
+5 rows in set (0.001 sec)
+
+MariaDB [dbpegawai]>
+
+-- tampilkan kolom2 dan baris2 tertentu di tabel staff
+MariaDB [dbpegawai]> select nip,nama,gender,umur from staff where nama='yanto';
++-------+-------+--------+------+
+| nip   | nama  | gender | umur |
++-------+-------+--------+------+
+| 12314 | yanto | L      |   20 |
++-------+-------+--------+------+
+1 row in set (0.055 sec)
+
+MariaDB [dbpegawai]>
+
+
+-- tampilkan data pegawai yang umurnya di atas 50 tahun dan berat badannya di atas 90 kg
+MariaDB [dbpegawai]> select nama,umur,berat_batan from staff where umur=umur>50
+and berat_batan=berat_batan>90;
+Empty set (0.000 sec)
+
+MariaDB [dbpegawai]>
+
+-- tampilkan data pegawai dengan klausa key
+
+MariaDB [dbpegawai]> select * from staff where id=2;
++----+-------+------+--------+------+-------------+------+
+| id | nip   | nama | gender | umur | berat_batan | foto |
++----+-------+------+--------+------+-------------+------+
+|  2 | 94212 | budi | L      |   30 |          65 |      |
++----+-------+------+--------+------+-------------+------+
+1 row in set (0.001 sec)
+
+-- tampilkan data pegawai dengan klausa non key
+MariaDB [dbpegawai]> select * from staff where gender='L';
++----+-------+-------+--------+------+-------------+------+
+| id | nip   | nama  | gender | umur | berat_batan | foto |
++----+-------+-------+--------+------+-------------+------+
+|  0 | 12314 | yanto | L      |   20 |          60 |      |
+|  2 | 94212 | budi  | L      |   30 |          65 |      |
++----+-------+-------+--------+------+-------------+------+
+2 rows in set (0.001 sec)
+
+MariaDB [dbpegawai]>
+
+-- tampilkan data pegawai dengan klausa in
+MariaDB [dbpegawai]> select nama,gender,umur from staff where umur in(20,30);
++-------+--------+------+
+| nama  | gender | umur |
++-------+--------+------+
+| yanto | L      |   20 |
+| budi  | L      |   30 |
++-------+--------+------+
+2 rows in set (0.001 sec)
+
+-- tampilkan data pegawai dengan klausa not in
+MariaDB [dbpegawai]> select nama,gender,umur from staff where umur not in(20,30)
+;
++-------+--------+------+
+| nama  | gender | umur |
++-------+--------+------+
+| yuyun | P      |   23 |
+| naya  | P      |   29 |
+| wati  | P      |   18 |
++-------+--------+------+
+3 rows in set (0.001 sec)
+
+MariaDB [dbpegawai]>
+
+-- tampilkan data pegawai dari yang umurnya paling tua ke muda
+MariaDB [dbpegawai]> select * from staff order by umur desc;
++----+-------+-------+--------+------+-------------+------+
+| id | nip   | nama  | gender | umur | berat_batan | foto |
++----+-------+-------+--------+------+-------------+------+
+|  2 | 94212 | budi  | L      |   30 |          65 |      |
+|  4 | 38937 | naya  | P      |   29 |          56 |      |
+|  3 | 32219 | yuyun | P      |   23 |          55 |      |
+|  0 | 12314 | yanto | L      |   20 |          60 |      |
+|  5 | 52312 | wati  | P      |   18 |          49 |      |
++----+-------+-------+--------+------+-------------+------+
+5 rows in set (0.001 sec)
+
+MariaDB [dbpegawai]>
+
+-- tampilkan data pegawai dari yang berat badan paling kurus ke atas
+MariaDB [dbpegawai]> select * from staff order by berat_batan;
++----+-------+-------+--------+------+-------------+------+
+| id | nip   | nama  | gender | umur | berat_batan | foto |
++----+-------+-------+--------+------+-------------+------+
+|  5 | 52312 | wati  | P      |   18 |          49 |      |
+|  3 | 32219 | yuyun | P      |   23 |          55 |      |
+|  4 | 38937 | naya  | P      |   29 |          56 |      |
+|  0 | 12314 | yanto | L      |   20 |          60 |      |
+|  2 | 94212 | budi  | L      |   30 |          65 |      |
++----+-------+-------+--------+------+-------------+------+
+5 rows in set (0.001 sec)
+
+MariaDB [dbpegawai]>
+
+-- tampilkan data 5 pegawai teratas gunakan klausa limit
+MariaDB [dbpegawai]> select * from staff limit 3;
++----+-------+-------+--------+------+-------------+------+
+| id | nip   | nama  | gender | umur | berat_batan | foto |
++----+-------+-------+--------+------+-------------+------+
+|  0 | 12314 | yanto | L      |   20 |          60 |      |
+|  2 | 94212 | budi  | L      |   30 |          65 |      |
+|  3 | 32219 | yuyun | P      |   23 |          55 |      |
++----+-------+-------+--------+------+-------------+------+
+3 rows in set (0.000 sec)
+
+MariaDB [dbpegawai]> select * from staff limit 2 offset 5;
+Empty set (0.001 sec)
+
+-- tampilkan data 5 pegawai terbawah gunakan klausa limit offset
+MariaDB [dbpegawai]> select * from staff limit 2 offset 3;
++----+-------+------+--------+------+-------------+------+
+| id | nip   | nama | gender | umur | berat_batan | foto |
++----+-------+------+--------+------+-------------+------+
+|  4 | 38937 | naya | P      |   29 |          56 |      |
+|  5 | 52312 | wati | P      |   18 |          49 |      |
++----+-------+------+--------+------+-------------+------+
+2 rows in set (0.001 sec)
+
+MariaDB [dbpegawai]>
+
+-- tampilkan jumlah pegawai gunakan fungsi aggregrat count
+MariaDB [dbpegawai]> select count(*) as jumlah_pegawai from staff;
++----------------+
+| jumlah_pegawai |
++----------------+
+|              5 |
++----------------+
+1 row in set (0.054 sec)
+
+-- tampilkan nama pegawai, umur yg paling tua gunakan fungsi aggregrat max
+MariaDB [dbpegawai]> select nama, max(umur) from staff;
++-------+-----------+
+| nama  | max(umur) |
++-------+-----------+
+| yanto |        30 |
++-------+-----------+
+1 row in set (0.016 sec)
+
+-- tampilkan nama pegawai, yg paling kurus gunakan fungsi aggregrat min
+MariaDB [dbpegawai]> select nama, min(berat_batan) from staff;
++-------+------------------+
+| nama  | min(berat_batan) |
++-------+------------------+
+| yanto |               49 |
++-------+------------------+
+1 row in set (0.001 sec)
+
+-- tampilkan data rata2 umur pegawai gunakan fungsi aggregrat avg
+MariaDB [dbpegawai]> select avg(umur) as rata2 from staff;
++-------+
+| rata2 |
++-------+
+|    24 |
++-------+
+1 row in set (0.001 sec)
+
+-- tampilkan jumlah data pegawai yang laki2 gunakan fungsi aggregrat count
+MariaDB [dbpegawai]> select count(gender) as laki2 from staff where gender='L';
++-------+
+| laki2 |
++-------+
+|     2 |
++-------+
+1 row in set (0.001 sec)
+
+-- tampilkan jumlah data pegawai yang perempuan gunakan fungsi aggregrat count
+MariaDB [dbpegawai]> select count(gender) as perempuan from staff where gender='
+P';
++-----------+
+| perempuan |
++-----------+
+|         3 |
++-----------+
+1 row in set (0.053 sec)
+
+-- tampilkan total berat badan seluruh pegawai gunakan fungsi aggregrat sum
+MariaDB [dbpegawai]> select sum(berat_batan) from staff;
++------------------+
+| sum(berat_batan) |
++------------------+
+|              285 |
++------------------+
+1 row in set (0.027 sec)
+
+MariaDB [dbpegawai]>

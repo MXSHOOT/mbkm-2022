@@ -1,0 +1,49 @@
+:root {
+    /* * = universal (keseluruhan) */
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: slategrey;
+    font-size: 12pt;
+    line-height: 0.5cm;
+}
+
+h1 {
+    color: crimson;
+    line-height: 1cm;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+fieldset,
+legend {
+    /* groupping */
+    background-color: wheat;
+    color: black;
+    border: darkgreen 2px solid;
+    /* border-radius: 30px; */
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    /*
+    padding: 15px; => all padding
+    padding: 15px 5px; => atas-bawah:15px, kanan-kiri:px 
+    padding: 10px 5px 10px 5px; => searah jarum jam
+    */
+    padding: 5px;
+}
+
+body {
+    margin: 0.5cm 2cm;
+    background-color: whitesmoke;
+}
+
+hr {
+    border: 1px solid maroon;
+}
+
+img {
+    width: 60px;
+    height: 60px;
+    float: left;
+    border: 1px solid rgb(0, 0, 0);
+    margin: 5px;
+  }

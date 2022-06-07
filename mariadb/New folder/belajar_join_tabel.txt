@@ -1,0 +1,124 @@
+-- proses backup --
+E:\xampp\mysql\bin>mysqldump -u root -p perpustakaan > e:\dbperpus.sql
+
+
+-- buat database kosong --
+MariaDB [(none)]> CREATE DATABASE dbperpus; 
+--proses restore --
+MariaDB [dbperpus]> E:\xampp\mysql\bin>mysql -u root -p dbstaff < e:\dbperpus.sql
+
+------------------join tabel--------------------
+MariaDB [dblibrary]> SELECT buku.judul, pengarang.nama AS author
+    -> FROM buku INNER JOIN pengarang
+    -> ON pengarang.id = buku.idpengarang;
++---------------------------------------+---------------+
+| judul                                 | author        |
++---------------------------------------+---------------+
+| Sejarah Kemerdekaan RI                | Deden Hamdani |
+| Pemberontakan G/30/SPKI               | Siti Aminah   |
+| Pilpres RI                            | Siti Aminah   |
+| Pilgub DKI Jakarta                    | Deden Hamdani |
+| Detik-Detik Proklamasi Kemerdekaan RI | Siti Aminah   |
++---------------------------------------+---------------+
+5 rows in set (0.002 sec)
+
+MariaDB [dblibrary]> SELECT * FROM pengarang;
++----+---------------+-----------------+------+------+
+| id | nama          | email           | hp   | foto |
++----+---------------+-----------------+------+------+
+|  1 | Siti Aminah   | siti@gmail.com  | NULL | NULL |
+|  2 | Deden Hamdani | deden@gmail.com | NULL | NULL |
++----+---------------+-----------------+------+------+
+2 rows in set (0.000 sec)
+
+MariaDB [dblibrary]> INSERT INTO pengarang VALUES
+    -> ('','Agus Susanto','agus@gmail.com','','');
+Query OK, 1 row affected, 1 warning (0.067 sec)
+
+MariaDB [dblibrary]> SELECT * FROM pengarang;
++----+---------------+-----------------+------+------+
+| id | nama          | email           | hp   | foto |
++----+---------------+-----------------+------+------+
+|  1 | Siti Aminah   | siti@gmail.com  | NULL | NULL |
+|  2 | Deden Hamdani | deden@gmail.com | NULL | NULL |
+|  3 | Agus Susanto  | agus@gmail.com  |      |      |
++----+---------------+-----------------+------+------+
+3 rows in set (0.000 sec)
+
+MariaDB [dblibrary]> SELECT buku.judul, pengarang.nama AS author
+    -> FROM buku RIGHT JOIN pengarang
+    -> ON pengarang.id = buku.idpengarang;
++---------------------------------------+---------------+
+| judul                                 | author        |
++---------------------------------------+---------------+
+| Sejarah Kemerdekaan RI                | Deden Hamdani |
+| Pemberontakan G/30/SPKI               | Siti Aminah   |
+| Pilpres RI                            | Siti Aminah   |
+| Pilgub DKI Jakarta                    | Deden Hamdani |
+| Detik-Detik Proklamasi Kemerdekaan RI | Siti Aminah   |
+| NULL                                  | Agus Susanto  |
++---------------------------------------+---------------+
+6 rows in set (0.001 sec)
+
+MariaDB [dblibrary]> SELECT buku.isbn,buku.judul, pengarang.nama AS author, penerbit.nama AS pen
+    -> FROM buku
+    -> INNER JOIN pengarang ON pengarang.id = buku.idpengarang
+    -> INNER JOIN penerbit ON penerbit.id = buku.idpenerbit;
++------+---------------------------------------+---------------+-----------------------+
+| isbn | judul                                 | author        | pen                   |
++------+---------------------------------------+---------------+-----------------------+
+| 111  | Sejarah Kemerdekaan RI                | Deden Hamdani | PT. Gema Insani Press |
+| 112  | Pemberontakan G/30/SPKI               | Siti Aminah   | PT. Gema Insani Press |
+| 113  | Pilpres RI                            | Siti Aminah   | PT. Yudhistira        |
+| 118  | Pilgub DKI Jakarta                    | Deden Hamdani | PT. Gema Insani Press |
+| 114  | Detik-Detik Proklamasi Kemerdekaan RI | Siti Aminah   | PT. Yudhistira        |
++------+---------------------------------------+---------------+-----------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [dblibrary]> SELECT buku.isbn,buku.judul, pengarang.nama AS author, penerbit.nama AS pen, kategori.nama AS jenis
+    -> FROM buku
+    -> INNER JOIN pengarang ON pengarang.id = buku.idpengarang
+    -> INNER JOIN penerbit ON penerbit.id = buku.idpenerbit
+    -> INNER JOIN kategori ON kategori.id = buku.idkategori;
++------+---------------------------------------+---------------+-----------------------+--------------------+
+| isbn | judul                                 | author        | pen                   | jenis              |
++------+---------------------------------------+---------------+-----------------------+--------------------+
+| 113  | Pilpres RI                            | Siti Aminah   | PT. Yudhistira        | Sosial dan Politik |
+| 114  | Detik-Detik Proklamasi Kemerdekaan RI | Siti Aminah   | PT. Yudhistira        | Sejarah            |
+| 111  | Sejarah Kemerdekaan RI                | Deden Hamdani | PT. Gema Insani Press | Sejarah            |
+| 112  | Pemberontakan G/30/SPKI               | Siti Aminah   | PT. Gema Insani Press | Sejarah            |
+| 118  | Pilgub DKI Jakarta                    | Deden Hamdani | PT. Gema Insani Press | Sosial dan Politik |
++------+---------------------------------------+---------------+-----------------------+--------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [dblibrary]> SELECT b.isbn,b.judul, pg.nama AS author, pt.nama AS pen, k.nama AS jenis
+    -> FROM buku b
+    -> INNER JOIN pengarang pg ON pg.id = b.idpengarang
+    -> INNER JOIN penerbit pt ON pt.id = b.idpenerbit
+    -> INNER JOIN kategori k ON k.id = b.idkategori;
++------+---------------------------------------+---------------+-----------------------+--------------------+
+| isbn | judul                                 | author        | pen                   | jenis              |
++------+---------------------------------------+---------------+-----------------------+--------------------+
+| 113  | Pilpres RI                            | Siti Aminah   | PT. Yudhistira        | Sosial dan Politik |
+| 114  | Detik-Detik Proklamasi Kemerdekaan RI | Siti Aminah   | PT. Yudhistira        | Sejarah            |
+| 111  | Sejarah Kemerdekaan RI                | Deden Hamdani | PT. Gema Insani Press | Sejarah            |
+| 112  | Pemberontakan G/30/SPKI               | Siti Aminah   | PT. Gema Insani Press | Sejarah            |
+| 118  | Pilgub DKI Jakarta                    | Deden Hamdani | PT. Gema Insani Press | Sosial dan Politik |
++------+---------------------------------------+---------------+-----------------------+--------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [dblibrary]> SELECT anggota.nama, peminjaman.tgl_pinjam, buku.judul, peminjaman.jml,
+    -> pengarang.nama AS author, penerbit.nama AS pen, kategori.nama AS jenis FROM peminjaman
+    -> INNER JOIN anggota ON anggota.id = peminjaman.idanggota
+    -> INNER JOIN buku ON buku.id = peminjaman.idbuku
+    -> INNER JOIN pengarang ON pengarang.id = buku.idpengarang
+    -> INNER JOIN penerbit ON penerbit.id = buku.idpenerbit
+    -> INNER JOIN kategori ON kategori.id = buku.idkategori;
++------+------------+------------------------+-----+---------------+-----------------------+--------------------+
+| nama | tgl_pinjam | judul                  | jml | author        | pen                   | jenis              |
++------+------------+------------------------+-----+---------------+-----------------------+--------------------+
+| Budi | 2022-04-01 | Sejarah Kemerdekaan RI | 1   | Deden Hamdani | PT. Gema Insani Press | Sejarah            |
+| Siti | 2022-04-01 | Pilpres RI             | 1   | Siti Aminah   | PT. Yudhistira        | Sosial dan Politik |
++------+------------+------------------------+-----+---------------+-----------------------+--------------------+
+2 rows in set (0.001 sec)
+

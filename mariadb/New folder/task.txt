@@ -1,0 +1,67 @@
+Tugas 6 MariaDB
+
+===============
+
+NF Computer bergerak di bidang training IT, berikut entitas bisnis prosesnya:
+
+1. kategori_kursus (pemrograman, jaringan, office, desain grafis , dll) berelasi dengan
+
+   entitas kursus (PHP, Linux, Ms. Office, dll) => one to many
+
+2. kategori_pengajar (internal, eksternal, freelancer) berelasi dengan
+
+   entitas pengajar (nama, email, hp, dll) => one to many
+
+3. kategori_training (public, in house, private)
+
+4. peserta (nama, email, hp, dll)
+
+4. Terjadi relasi many to many:
+
+   Banyak pengajar mengajar banyak training, Banyak pengajar mengajar banyak peserta,
+
+   Banyak kategori_training dilaksanakan di training
+
+   Yang menjadi tabel perantara entitas training 
+
+   (id, idpengajar, idkategori_training, idpeserta,
+
+    tgl mulai,tgl akhir, tempat, keterangan dll)
+
+ 
+
+Tugas :
+
+1. Desainlah bisnis proses di atas menjadi ERD menggunakan mysqlworkbench
+
+2. Screen shoot ERD yg sudah jadi
+
+3. Forword ke database mariaDB dengan nama: dbtraining
+
+4. Isi seluruh tabel, minimal 5 record
+
+5. Lakukan query 2 inner join table (outer join optional): 
+
+   - tabel kategori_kursus dengan kursus
+
+   - tabel kategori_pengajar dengan pengajar
+
+6. Lakukan query join 7 tabel (6 inner join):
+
+   nama peserta, kategori training,tgl_mulai, tgl_akhir, tempat, keterangan,
+
+   nama kursus, kategori kursus, pengajar, kategori pengajar
+
+7. backup database training
+
+      
+
+Format nama file tugas:
+
+tugas6_mariadb_kelas_nama_lengkap_kampus.zip ( semua file terkait)
+
+Contoh: tugas6_mariadb_1B_Budi_Santoso_STTTelkom.zip
+
+Assign tugas pada link group tugas masing-masing kelompok pada LMS. 
+
+Dead Line: Minggu, 24 April 2022 Jam 23.59 WIB 

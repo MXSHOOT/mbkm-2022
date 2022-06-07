@@ -1,0 +1,181 @@
+:root {
+    /* * = universal (keseluruhan) */
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: slategrey;
+    font-size: 12pt;
+    line-height: 0.5cm;
+}
+
+h1 {
+    color: crimson;
+    line-height: 1cm;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+fieldset,
+legend {
+    /* groupping */
+    background-color: wheat;
+    color: black;
+    border: darkgreen 2px solid;
+    /* border-radius: 30px; */
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    /*
+    padding: 15px; => all padding
+    padding: 15px 5px; => atas-bawah:15px, kanan-kiri:px 
+    padding: 10px 5px 10px 5px; => searah jarum jam
+    */
+    padding: 5px;
+}
+
+body {
+    margin: 0.5cm 2cm;
+    background-color: whitesmoke;
+}
+
+hr {
+    border: 1px dashed maroon;
+}
+
+nav#menu {
+    text-align: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: slategray;
+}
+
+/*--------------pseudo class-----------------*/
+
+#menu a {
+    display: block;
+    padding: 14px 16px;
+    text-decoration: none;
+    float: left;
+  }
+
+#menu  a:link {
+color: seagreen;
+}
+
+/* visited link */
+#menu a:visited {
+color: white;
+}
+
+  
+#menu a:hover {
+    background-color: #111;
+  }
+  
+#menu a:active {
+    background-color: seagreen;
+  }
+
+
+
+/*-------pseudo element----------*/
+.has-dropcap:first-letter {
+    font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
+    float: left;
+    color: darkgreen;
+    font-size: 24pt;
+    margin-top: 10px;
+    padding-right: 5px;
+  }
+.p1:first-letter {
+    font-size: 24pt;
+    color: yellow;
+    font-family: 'Segoe UI';
+    float: left;
+    margin-top: 10px;
+    padding-right: 5px;
+}
+
+p.has-dropcap::first-line {
+    font-style: italic;
+    background-color: khaki;
+    color: #808000;
+}
+
+.point {
+    font-weight: bolder;
+    color: red;
+    font-family: papyrus;
+    font-size: 14pt;
+}
+
+ul.jenis_kelas {
+    list-style-image: url('../icon/good.png');
+}
+
+
+.pendidikan {
+    list-style-image: url('../icon/user.png');
+}
+
+.sc {
+    list-style-image: url('../icon/sc.png');
+}
+
+.github {
+    list-style-image: url('../icon/github.png');
+}
+
+.ig {
+    list-style-image: url('../icon/ig.png');
+}
+
+.sco {
+    list-style-image: url('../icon/sco.png');
+}
+
+#pen {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 60%;
+}
+
+
+
+#pen td,
+#pen th {
+    border: 1px dashed black;
+    padding: 10px;
+    text-align: center;
+}
+
+#pen th {
+    padding: 10px 5px;
+    background-color: darkblue;
+    color: white;
+}
+
+#pen tr:nth-child(even) {
+    background-color: brown;
+}
+
+#pen tr:nth-child(odd) {
+    background-color: brown;
+}
+
+#pen tr:hover {
+    background-color: burlywood;
+}
+#pen tr {
+    color: white;
+}
+
+
+
+img {
+    width: 100px;
+    height: 100px;
+    float: right;
+    border: 1px solid rgb(0, 0, 0);
+    margin: 1px;
+  }

@@ -1,0 +1,118 @@
+--masuk ke ruangan DB melalui CMD
+Setting environment for using XAMPP for Windows.
+L420@L420-PC c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.21-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+
+--membuat database
+MariaDB [(none)]> create database dbpegawai
+    -> ;
+Query OK, 1 row affected (0.001 sec)
+
+-- tampilkan database
+MariaDB [(none)]> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| covid_rest-api     |
+| dbpegawai          |
+| dvwa               |
+| information_schema |
+| laravel_rest_api   |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+9 rows in set (0.101 sec)
+
+-- masuk ke database dbpegawai
+MariaDB [(none)]> use dbpegawai
+Database changed
+MariaDB [dbpegawai]> show tables;
+Empty set (0.001 sec)
+
+MariaDB [dbpegawai]> create table pegawai (
+    -> id int primary key,
+    -> nip char(5) not null auto_increment,
+    -> nama varchar(30) not null,
+    -> gender ENUM("L", "P") not null,
+    -> umur int not null,
+    -> berat_batan float
+    -> );
+ERROR 1063 (42000): Incorrect column specifier for column 'nip'
+MariaDB [dbpegawai]> create table pegawai (
+    -> id int primary key,
+    -> nip char(5) not null auto_increment,
+    -> nama varchar(30) not null,
+    -> gender enum('L','P') not null,
+    -> umur int not null,
+    -> berat_batan float
+    -> );
+ERROR 1063 (42000): Incorrect column specifier for column 'nip'
+
+--membuat tabel pegawai
+MariaDB [dbpegawai]> create table pegawai (
+    -> id int primary key,
+    -> nip char(5) not null,
+    -> nama varchar(30) not null,
+    -> gender enum('L','P') not null,
+    -> umur int not null,
+    -> berat_batan float
+    -> );
+Query OK, 0 rows affected (0.313 sec)
+
+MariaDB [dbpegawai]> show dbpegawai
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
+corresponds to your MariaDB server version for the right syntax to use near 'dbp
+egawai' at line 1
+
+--tampilkan database
+MariaDB [dbpegawai]> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| covid_rest-api     |
+| dbpegawai          |
+| dvwa               |
+| information_schema |
+| laravel_rest_api   |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+9 rows in set (0.001 sec)
+
+MariaDB [dbpegawai]> show table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
+corresponds to your MariaDB server version for the right syntax to use near '' a
+t line 1
+
+-- lihat deskripsi tabel
+MariaDB [dbpegawai]> DESCRIBE pegawai
+    -> ;
++-------------+---------------+------+-----+---------+-------+
+| Field       | Type          | Null | Key | Default | Extra |
++-------------+---------------+------+-----+---------+-------+
+| id          | int(11)       | NO   | PRI | NULL    |       |
+| nip         | char(5)       | NO   |     | NULL    |       |
+| nama        | varchar(30)   | NO   |     | NULL    |       |
+| gender      | enum('L','P') | NO   |     | NULL    |       |
+| umur        | int(11)       | NO   |     | NULL    |       |
+| berat_batan | float         | YES  |     | NULL    |       |
++-------------+---------------+------+-----+---------+-------+
+6 rows in set (0.051 sec)
+
+MariaDB [dbpegawai]>
